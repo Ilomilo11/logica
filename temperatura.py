@@ -45,13 +45,13 @@ try:
             T_Celsius = calcular_temperatura_Celsius(V, R_fixa, B_coefficient, T0, R0)
             print("Temperatura em Celsius:", round(T_Celsius, 2))  # Exibe a temperatura em Celsius
         time.sleep(1)  # Aguarda 1 segundo antes de fazer uma nova leitura
+        
+        if T_Celsius >= 25:
+            placa.digital [2].write(1)
+            time.sleep(1)
+
+        else:
+            placa.digital [2].write(0)
 except:
     pino_temperatura.disable_reporting()  # Desabilita a leitura do pino
     placa.exit()  # Encerra a conexão com a placa Arduino
-
-if T_Celsius >= 25:
-    placa.digital [2].write(1)
-    time.sleep(1)
-
-else:
-    placa.digital [2].write(0)
